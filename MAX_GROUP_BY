@@ -1,0 +1,47 @@
+DECLARE
+    v_max                 NUMBER(10);
+    v_department_id       departments.department_id%TYPE;
+    v_department_name     departments.department_name%TYPE;
+    v_v_department_id     departments.department_id%TYPE;
+    v_v_department_name   departments.department_name%TYPE;
+BEGIN
+    SELECT
+        MAX(department_id)
+    INTO
+        v_max
+    FROM
+        departments;
+
+    dbms_output.put_line('MAX DEPARTMENT IS : '
+    || v_max);
+    INSERT INTO departments (
+        department_id,
+        department_name
+    ) VALUES (
+        280,
+        'EDUCATION'
+    );
+
+    dbms_output.put_line('SQL%ROWCOUNT GIVES : '
+    || SQL%rowcount);
+    SELECT
+        department_id,
+        department_name
+    INTO
+        v_v_department_id,v_v_department_name
+    FROM
+        departments
+    WHERE
+        department_id = (
+            SELECT
+                MAX(department_id)
+            FROM
+                departments
+        );
+
+    dbms_output.put_line('DEPARTMENT_ID'
+    || 'DEPARTMENT_NAME');
+    dbms_output.put_line(v_v_department_id
+    || v_v_department_name);
+END;
+/
