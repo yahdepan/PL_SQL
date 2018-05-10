@@ -1,0 +1,25 @@
+DECLARE
+    v_salary       employees.salary%TYPE;
+    v_first_name   employees.first_name%TYPE;
+    v_pf_amount    NUMBER(10);
+BEGIN
+    SELECT
+        first_name,
+        salary,
+        salary * 0.12 * 0.45
+    INTO
+        v_first_name,v_salary,v_pf_amount
+    FROM
+        employees
+    WHERE
+        upper(first_name) = 'DAVID'
+        AND   upper(last_name) = 'AUSTIN';
+
+    dbms_output.put_line('HELLO '
+    || v_first_name);
+    dbms_output.put_line('YOUR SALARY IS : '
+    || v_salary);
+    dbms_output.put_line('YOUR CONTRIBUTION TOWARDS PF: '
+    || v_pf_amount);
+END;
+/
