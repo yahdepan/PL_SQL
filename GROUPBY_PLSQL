@@ -1,0 +1,14 @@
+DECLARE
+    v_max   NUMBER(10);
+BEGIN
+    SELECT
+        MAX(department_id) /*THIH IS HOW YOU NEED TO USE GROUP BY FUNCITON*/
+    INTO
+        v_max              /*YOU NEED TO BIND ON INTO CLAUSE HERE*/   
+    FROM
+        employees;
+
+    dbms_output.put_line('MAX DEPARTMENT IS : '
+    || v_max);            /*CALL TO DISPLAY*/
+END;
+/
